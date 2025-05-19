@@ -79,7 +79,7 @@ def modifica_libro(request, libro_id):
         if form.is_valid():
             form.save()
             # Aggiungere un messaggio di successo
-            #messages.success(request, f"Il libro '{libro.titolo}' è stato modificato con successo!")
+            messages.success(request, f"Il libro '{libro.titolo}' è stato modificato con successo!")
             return redirect('lista_libri')  # torna alla lista dei libri
     else:
         form = LibroForm(instance=libro)
@@ -96,7 +96,7 @@ def modifica_libro(request, libro_id):
     return render(request, 'libro/elimina_libro.html', {'libro': libro})"""
 
 
-"""def cancella_libro(request, libro_id):
+def cancella_libro(request, libro_id):
     libro = get_object_or_404(Libro, id=libro_id)
     
     if request.method == 'POST':
@@ -105,16 +105,16 @@ def modifica_libro(request, libro_id):
         messages.success(request, f"Il libro '{libro.titolo}' è stato cancellato con successo!")
         return redirect('lista_libri')  # Redirigi alla lista dei libri
     
-    return render(request, 'libro/elimina_libro.html', {'libro': libro})"""
+    return render(request, 'libro/elimina_libro.html', {'libro': libro})
 
-def cancella_libro(request, libro_id):
+"""def cancella_libro(request, libro_id):
     libro = get_object_or_404(Libro, id=libro_id)
 
     if request.method == 'POST':
         libro.delete()  # Elimina il libro dal database
         return redirect('lista_libri')  # Redirect alla lista dei libri con un messaggio di successo
 
-    return render(request, 'libro/elimina_libro.html', {'libro': libro})
+    return render(request, 'libro/elimina_libro.html', {'libro': libro})"""
 
 #funzione per ricercare un libro nell'archivio
 def ricerca_libro(request):
