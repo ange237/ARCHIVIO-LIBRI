@@ -1,0 +1,18 @@
+{% extends 'libro/base.html' %}
+
+{% block title %}statitici archivio{% endblock %}
+
+{% block content %}
+  <div class = "container">
+      <a href="{% url 'libri_per_categoria' %}" class="btn btn-secondary mt-3">Libri Per Categoria</a>
+  </div>
+  <div class = "container">
+      <a href="{% url 'libri_per_autore' %}" class="btn btn-secondary mt-3">Libri Per Autore</a>
+  </div>
+  <div class = "container">
+      <a href="{% url 'libri_per_anno' %}" class="btn btn-secondary mt-3">Libri Per Anno Publicazione</a>
+  </div>
+  <div class = "container">
+      <a href="{% url 'libri_per_editore' %}" class="btn btn-secondary mt-3">Libri Per Editore</a>
+  </div>
+{% endblock %}

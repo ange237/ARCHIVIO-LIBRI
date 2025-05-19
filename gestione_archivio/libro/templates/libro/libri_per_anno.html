@@ -1,0 +1,18 @@
+{% extends 'libro/base.html' %}
+
+{% block title %}libri per anno di publicazione{% endblock %}
+
+{% block content %}
+  <div class= "container">
+        <!-- grafico.html -->
+        <div>
+           <h2>Libri per anno di publicazione</h2>
+        </div>
+        <div clas ="grafico-container" >
+          <img src="data:image/png;base64,{{ grafico }}" alt="Grafico">  
+        </div>
+        <div class = "container">
+          <a href="{% url 'statistici' %}" class="btn btn-secondary mt-3">indietro</a>
+        </div>
+    </div>
+{% endblock %}

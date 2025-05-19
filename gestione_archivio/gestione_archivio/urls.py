@@ -29,6 +29,11 @@ urlpatterns = [
     path('elimina/<int:libro_id>/', cancella_libro, name='elimina_libro'),#per eliminare un libro nel nostro archivio
     path('ricerca_libro/', ricerca_libro, name='ricerca_libro'), # per ricercare un libro nell'archivio
     path('libro/<int:id>//',dettagli_libro, name='dettagli_libro'), # per i dettagli di un libro
+    path("libri_per_categoria/",diag_libri_categoria,name ="libri_per_categoria"),#stampa il grafico dei libri per categoria
+    path("libri_per_autore/", diag_libri_autore ,name ="libri_per_autore"),#stampa il grafico dei libri per autore
+    path("libri_per_anno/", diag_libri_anno ,name ="libri_per_anno"),#stampa il grafico dei libri per anno di publicazione
+    path("libri_per_editore/", diag_libri_editore ,name ="libri_per_editore"),#stampa il grafico dei libri per editori
+    path("statistici/", statistici ,name ="statistici")#per acceder alle statistiche
 ]
 
 

@@ -1,0 +1,12 @@
+{% extends 'libro/base.html' %}
+
+{% block title %}libri per autori{% endblock %}
+
+{% block content %}
+  <!-- grafico.html -->
+  <h2>Libri per autori</h2>
+  <img src="data:image/png;base64,{{ grafico }}" alt="Grafico">
+  <div class = "container">
+      <a href="{% url 'statistici' %}" class="btn btn-secondary mt-3">indietro</a>
+  </div>
+{% endblock %}

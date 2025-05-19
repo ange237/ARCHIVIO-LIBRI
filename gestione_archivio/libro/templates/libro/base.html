@@ -49,6 +49,17 @@
             font-weight: bold;
             text-decoration: underline;
         }
+        .grafico-container {
+            display: flex;
+            justify-content: center; /* Centra l'immagine orizzontalmente */
+            align-items: center;     /* Centra l'immagine verticalmente */
+            height: 100%;            /* Assicurati che il contenitore prenda tutta l'altezza disponibile */
+        }
+
+        .grafico-container img {
+            max-width: 100%;         /* Imposta una larghezza massima per evitare che l'immagine sia troppo grande */
+            height: auto;            /* Mantieni la proporzione dell'immagine */
+        }
 
     </style>
 </head>
@@ -88,6 +99,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == '/aggiungi_libro/' %}active{% endif %}" href="/aggiungi_libro/">Aggiungi libro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/statistici/' %}active{% endif %}" href="/statistici/">Statistici</a>
                     </li>
                 </ul>
             </div>
