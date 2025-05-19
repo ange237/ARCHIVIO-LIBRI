@@ -1,0 +1,75 @@
+{% extends 'libro/base.html' %}
+{% load static %}
+
+{% block title %}Catalogo dei Libri{% endblock %}
+
+{% block content %}
+    <h1>Catalogo dei Libri</h1>
+
+    {% if page_obj %}
+        <div class="row">
+            {% for libro in page_obj %}
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        {% if libro.immagine %}
+                            <img src="{{ libro.immagine.url }}" alt="{{ libro.titolo }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'images/no-image.png' %}" alt="No Image" class="card-img-top" style="height: 200px; object-fit: cover;">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ libro.titolo }}</h5>
+                            <p class="card-text">
+                                <strong>Codice:</strong> {{ libro.codice_univoco }}<br>
+                                <strong>Autore:</strong> {{ libro.autore }}<br>
+                                <strong>Anno:</strong> {{ libro.anno_pubblicazione }}<br>
+                                <strong>Categoria:</strong> {{ libro.get_categoria_display }}
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'dettagli_libro' libro.id %}" class="btn btn-info btn-sm">Dettagli</a>
+                                <a href="{% url 'modifica_libro' libro.id %}" class="btn btn-warning btn-sm">Modifica</a>
+                                <a href="{% url 'elimina_libro' libro.id %}" class="btn btn-danger btn-sm">Elimina</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Navigazione Pagine -->
+        <nav aria-label="Navigazione pagine" class="mt-4 text-center">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">«</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">«</span></li>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">»</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled"><span class="page-link">»</span></li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    {% else %}
+        <p>Nessun libro trovato.</p>
+    {% endif %}
+
+    <!-- Pulsante per aggiungere un nuovo libro -->
+    <div class="text-center mt-4">
+        <a href="{% url 'aggiungi_libro' %}" class="btn btn-success">Aggiungi Libro</a>
+    </div>
+{% endblock %}

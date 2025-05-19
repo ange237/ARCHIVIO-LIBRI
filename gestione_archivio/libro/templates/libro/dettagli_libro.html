@@ -1,0 +1,46 @@
+{% extends 'libro/base.html' %}
+
+{% load static %}  <!-- Carica il modulo static per gestire i file statici -->
+
+{% block title %}Dettagli del Libro{% endblock %}
+
+{% block content %}
+    <h1>Dettagli del Libro</h1>
+        <div class="row">
+            <div class="col-md-6 bg-white text-dark p-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ libro.titolo }}</h5>
+                            
+                    <!-- Mostra l'immagine del libro -->
+                    {% if libro.immagine %}
+                        <img src="{{ libro.immagine.url }}" alt="{{ libro.titolo }}" class="img-fluid mb-3" style="max-width: 300px;">
+                    {% else %}
+                         <img src="{% static 'images/no-image.png' %}" alt="No Image" class="img-fluid mb-3" style="max-width: 300px;">
+                    {% endif %}
+
+                    <p class="card-text">
+                        <strong>Codice:</strong> {{ libro.codice_univoco }}<br>
+                        <strong>Autore:</strong> {{ libro.autore }}<br>
+                        <strong>Anno di Pubblicazione:</strong> {{ libro.anno_pubblicazione }}<br>
+                        <strong>Categoria:</strong> {{ libro.get_categoria_display }}<br>
+                        <strong>Editore:</strong> {{ libro.editore }}<br>
+                    </p>
+
+                    <!-- Pulsante per modificare il libro -->
+                    <a href="{% url 'modifica_libro' libro.id %}" class="btn btn-warning btn-sm">Modifica</a>
+                            
+                    <!-- Pulsante per cancellare il libro (che porta alla conferma di cancellazione) -->
+                    <a href="{% url 'elimina_libro' libro.id %}" class="btn btn-danger btn-sm">Elimina</a>
+                </div>
+            </div>
+            <!-- Campo per la descrizione del libro. -->
+            <div class="col-md-6 bg-white text-dark p-3">
+               <h3>Descrizione</h3>
+               <p>{{ libro.descrizione }}</p>
+            </div>
+        </div>
+
+    <br>
+    <a href="{% url 'lista_libri' %}" class="btn btn-secondary">Torna alla lista dei libri</a>
+{% endblock %}
+

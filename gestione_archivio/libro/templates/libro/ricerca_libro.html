@@ -1,0 +1,63 @@
+{% extends 'libro/base.html' %}
+
+{% block title %}Ricerca Libri{% endblock %}
+
+{% block content %}
+    <h1>Ricerca un libro</h1>
+    
+    <!-- Form di ricerca -->
+    <form method="get" action="{% url 'ricerca_libro' %}">
+        {% csrf_token %}
+        
+        <!-- Campo Titolo -->
+        <div class="mb-3">
+            <label for="{{ form.titolo.id_for_label }}" class="form-label">Titolo</label>
+            <div>
+                {{ form.titolo }}  <!-- Campo di input per il titolo -->
+            </div>
+        </div>
+        
+        <!-- Campo Autore -->
+        <div class="mb-3">
+            <label for="{{ form.autore.id_for_label }}" class="form-label">Autore</label>
+            <div>
+                {{ form.autore }}  <!-- Campo di input per l'autore -->
+            </div>
+        </div>
+        
+        <!-- Campo Anno di Pubblicazione -->
+        <div class="mb-3">
+            <label for="{{ form.anno_pubblicazione.id_for_label }}" class="form-label">Anno di Pubblicazione</label>
+            <div>
+                {{ form.anno_pubblicazione }}  <!-- Campo di input per l'anno di pubblicazione -->
+            </div>
+        </div>
+        
+        <!-- Campo Categoria -->
+        <div class="mb-3">
+            <label for="{{ form.categoria.id_for_label }}" class="form-label">Categoria</label>
+            <div>
+                {{ form.categoria }}  <!-- Campo di input per la categoria -->
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Cerca</button>
+    </form>
+
+    <h2>Libri trovati</h2>
+    
+    <!-- Visualizza i libri trovati -->
+    {% if libri %}
+        <ul class="list-group mt-4">
+            {% for libro in libri %}
+                <li class="list-group-item">
+                    <strong>{{ libro.titolo }}</strong> - {{ libro.autore }} ({{ libro.anno_pubblicazione }})
+                    <!-- Aggiungi un link ai dettagli del libro -->
+                    <a href="{% url 'dettagli_libro' libro.id %}" class="btn btn-info btn-sm float-end">Dettagli</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nessun libro trovato.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AGM ARCHIVE{% endblock %}</title>
+    
+    <!-- Link al CSS di Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- per caricare il file static nella mia pagina -->
+    {% load static %}
+    
+
+    <!-- CSS Inline per la gestione del footer statico -->
+    <style>
+        /* Garantire che il corpo e l'HTML occupino tutta l'altezza */
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Layout del body con Flexbox: imposta il layout per usare Flexbox */
+        body {
+            display: flex;
+            flex-direction: column;
+            background-image: url('static/images/AGM_FONT.png'); /* Remplace par le bon chemin */
+            background-size: cover; /* pour que l'image couvre toute la page */
+            background-repeat: no-repeat; /* évite les répétitions */
+            background-position: center center; /* centre l'image */
+        }
+
+        /* La parte principale del contenuto occupa tutto lo spazio disponibile */
+        .container {
+            flex: 1;
+        }
+
+        /* Stili per il footer */
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;  /* Spinge il footer in fondo alla pagina */
+        }
+
+        /* Classe per l'elemento della navbar attivo */
+        .nav-link.active {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="/">
+              <img src="{% static 'images/AGM_FONT.png' %}" alt="Logo" width="30" height="30" class="me-2">
+              AGM SOLUTIONS ARCHIVE
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/lista_libri/' %}active{% endif %}" href="/lista_libri/">Libri</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/ricerca_libro/' %}active{% endif %}" href="/ricerca_libro/">Ricerca</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == '/aggiungi_libro/' %}active{% endif %}" href="/aggiungi_libro/">Aggiungi libro</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenuto principale -->
+    <div class="container mt-5">
+        {% block content %}
+        <!-- Il contenuto specifico per ogni pagina verrà inserito qui -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 AGM ARCHIVE. Tutti i diritti riservati.</p>
+    </footer>
+
+    <!-- Scripts per Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+{% extends 'libro/base.html' %}
+
+{% block title %}Modifica Libro{% endblock %}
+
+{% block content %}
+    <h1>Modifica Libro: {{ libro.titolo }}</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Titolo -->
+        <div class="mb-3">
+            <label for="id_titolo" class="form-label">Titolo</label>
+            <div>
+              {{ form.titolo }}
+            </div>
+        </div>
+
+        <!-- Autore -->
+        <div class="mb-3">
+            <label for="id_autore" class="form-label">Autore</label>
+            <div>
+              {{ form.autore }}
+            </div>
+        </div>
+
+        <!-- Anno di pubblicazione -->
+        <div class="mb-3">
+            <label for="id_anno_pubblicazione" class="form-label">Anno di Pubblicazione</label>
+            <p>deve essere compreso tra 1000 e 2025</p>
+            <div>
+             {{ form.anno_pubblicazione }}
+            </div>
+        </div>
+
+        <!-- Categoria -->
+        <div class="mb-3">
+            <label for="id_categoria" class="form-label">Categoria</label>
+            <div>
+             {{ form.categoria }}
+            </div>
+        </div>
+
+        <!-- Editore -->
+        <div class="mb-3">
+            <label for="id_editore" class="form-label">Editore</label>
+            <div>
+             {{ form.editore }}
+            </div>
+        </div>
+        <!-- Descrizione -->
+        <div class="mb-3">
+            <label for="id_descrizione" class="form-label">Descrizione</label>
+            <div>
+             {{ form.descrizione }}
+            </div>
+        </div>
+
+        <!-- Immagine -->
+        <div class="mb-3">
+            <label for="id_immagine" class="form-label">Immagine</label>
+            <div>
+             {{ form.immagine }}
+            </div>
+        </div>
+
+        <!-- Pulsante per inviare il form -->
+        <button type="submit" class="btn btn-warning">Modifica Libro</button>
+
+        <!-- Pulsante per annullare e tornare alla lista dei libri -->
+        <a href="{% url 'lista_libri' %}" class="btn btn-secondary mt-3">Annulla</a>
+    </form>
+{% endblock %}
+
+
