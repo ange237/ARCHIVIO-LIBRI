@@ -138,3 +138,7 @@ def ricerca_libro(request):
 
     return render(request, 'libro/ricerca_libro.html', {'form': form,'libri': libri_trovati})
 
+#funzione pe l'analisi dati : per trovare la categoria con piu libri presenti
+"""def diag_libri_categoria(request):
+    libri = Libro.objects.all() # ottengo tutti i libri della mai base di dati"""
+
