@@ -37,7 +37,7 @@ class Libro(models.Model):
 
     titolo = models.CharField(max_length=200)
     autore = models.CharField(max_length=100)
-    anno_pubblicazione = models.IntegerField(max_length=4,null=True,blank=True,                                
+    anno_pubblicazione = models.IntegerField(null=True,blank=True,                                
         validators=[
             MinValueValidator(1000),      # Il valore deve essere >= 1000
             MaxValueValidator(2025),     # Il valore deve essere <= 2025
